@@ -1,0 +1,43 @@
+{
+  "name": "agristudio-turborepo",
+  "private": true,
+  "engines": {
+    "node": ">=20.13.1"
+  },
+  "packageManager": "pnpm@8.15.8",
+  "scripts": {
+    "build": "turbo build",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo clean",
+    "db:push": "pnpm -F db push",
+    "db:studio": "pnpm -F db dev",
+    "server:dev": "pnpm -F server dev",
+    "dev": "turbo dev --parallel",
+    "serve": "turbo serve --parallel",
+    "format": "turbo format --continue -- --cache --cache-location='node_modules/.cache/.prettiercache'",
+    "format:fix": "turbo format --continue -- --write --cache --cache-location='node_modules/.cache/.prettiercache'",
+    "lint": "turbo lint --continue -- --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg check",
+    "lint:fix": "turbo lint --continue -- --fix --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg fix",
+    "typecheck": "turbo typecheck"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    ".prisma/client": "*",
+    "@acme/prettier-config": "^0.1.0",
+    "@manypkg/cli": "^0.21.0",
+    "@turbo/gen": "^1.10.16",
+    "superjson": "1.13.3",
+    "turbo": "^1.12.4"
+  },
+  "prettier": "@acme/prettier-config",
+  "pnpm": {
+    "overrides": {
+      "got@<11.8.5": ">=11.8.5",
+      "xml2js@<0.5.0": ">=0.5.0",
+      "semver@>=6.0.0 <6.3.1": ">=6.3.1",
+      "semver@>=7.0.0 <7.5.2": ">=7.5.2",
+      "json5@<1.0.2": ">=1.0.2",
+      "crypto-js@<4.2.0": ">=4.2.0"
+    }
+  }
+}

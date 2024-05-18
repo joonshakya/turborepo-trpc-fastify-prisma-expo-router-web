@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "tRPC Server",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm serve",
+      "cwd": "${workspaceFolder}/apps/server/",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

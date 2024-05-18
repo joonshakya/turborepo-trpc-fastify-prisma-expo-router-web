@@ -1,0 +1,11 @@
+{
+  "name": "@acme/tsconfig",
+  "private": true,
+  "version": "0.1.0",
+  "files": [
+    "base.json"
+  ],
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

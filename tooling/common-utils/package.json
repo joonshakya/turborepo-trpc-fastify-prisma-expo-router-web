@@ -1,0 +1,9 @@
+{
+  "name": "@acme/common-utils",
+  "private": true,
+  "version": "0.1.0",
+  "main": "index.ts",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

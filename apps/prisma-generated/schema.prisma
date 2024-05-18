@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String                   @id @default(cuid())
+  fullName              String
+  email                 String                   @unique
+  password              String
+  phone                 String                   @unique
+  type                  UserTypeChoice           @default(CUSTOMER)
+  about                 String?
+  disabledNotifications NotificationTypeChoice[] @default([])
+  noOfPasswordsChanged  Int                      @default(0)
+  messages              Message[]
+  chats                 Chat[]
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  notifications         Notification[]
+  notificationIds       String[]                 @default([])
+}
+
+model Chat {
+  id           String    @id @default(cuid())
+  messages     Message[]
+  read         Boolean   @default(false)
+  closed       Boolean   @default(false)
+  participants User[]
+  createdAt    DateTime  @default(now())
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  text      String
+  sender    User     @relation(fields: [senderId], references: [id])
+  senderId  String
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  chatId    String
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String                      @id @default(cuid())
+  title     String
+  body      String
+  dataId    String?
+  dataType  NotificationDataTypeChoice?
+  type      NotificationTypeChoice
+  read      Boolean                     @default(false)
+  user      User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime                    @default(now())
+  updatedAt DateTime                    @updatedAt
+}
+
+enum NotificationDataTypeChoice {
+  USER
+}
+
+enum NotificationTypeChoice {
+  USER_CREATED
+}
+
+enum UserTypeChoice {
+  CUSTOMER
+  ADMIN
+}
+
+enum DayChoice {
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
