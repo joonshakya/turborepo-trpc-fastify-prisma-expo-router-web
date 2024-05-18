@@ -1,5 +1,5 @@
 {
-  "name": "agristudio-turborepo",
+  "name": "turborepo-trpc-fastify-prisma-expo-router-web",
   "private": true,
   "engines": {
     "node": ">=20.13.1"
