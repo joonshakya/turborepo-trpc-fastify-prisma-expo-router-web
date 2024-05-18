@@ -17,7 +17,7 @@ export const s3Router = createTRPCRouter({
       const BUCKET = process.env.AWS_BUCKET_NAME;
       // const customDomain = "example.blr1.digitaloceanspaces.com";
       // const customDomainWithoutAgri = "blr1.digitaloceanspaces.com";
-      // const storageDomain = "https://example.cloudfront.net";
+      const storageDomain = "https://example.cloudfront.net";
 
       const client = new S3Client({
         region: REGION,
